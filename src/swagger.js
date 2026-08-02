@@ -1,7 +1,8 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import dotenv from "dotenv";
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -15,7 +16,7 @@ const swaggerDefinition = {
   },
   servers: [
     {
-      url: "http://localhost:3001",
+      url: process.env.API_URI,
       description: "Local development server",
     },
   ],
