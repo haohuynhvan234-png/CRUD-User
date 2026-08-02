@@ -1,11 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const connectDB = async () => {
+  if (!process.env.MONGO_URI) {
+    console.warn(
+      "⚠️ MONGO_URI not set. Skipping MongoDB connection. Swagger docs remain available.",
+    );
+    return;
+  }
+
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ MongoDB Connected');
+    console.log("✅ MongoDB Connected");
   } catch (error) {
-    console.error('❌ Connection Failed:', error.message);
+    console.error("❌ Connection Failed:", error.message);
     process.exit(1);
   }
 };
